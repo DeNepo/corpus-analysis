@@ -4,12 +4,12 @@ import fs from 'fs';
 import { processArgs } from '../lib/process-args.js';
 import { join } from 'path';
 
-const args = processArgs(process.argv);
+const { language, count } = processArgs(process.argv);
 
-const URL = `https://api.github.com/search/repositories?q=language:${
-  args.language
-}&stars:%3E0&sort=stars&per_page=${args.count || 25}`;
-const OUTPUT_FILE = join('..', '.corpora', `${args.language}-repos.txt`);
+const URL = `https://api.github.com/search/repositories?q=language:${language}&stars:%3E0&sort=stars&per_page=${
+  count || 25
+}`;
+const OUTPUT_FILE = join('..', '.corpora', `${language}-${count}.txt`);
 
 const logger = fs.createWriteStream(OUTPUT_FILE, {
   flags: 'w',

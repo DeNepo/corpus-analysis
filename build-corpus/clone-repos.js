@@ -4,7 +4,7 @@ import { join } from 'path';
 
 import { processArgs } from '../lib/process-args.js';
 
-const args = processArgs(process.argv);
+const { language, count } = processArgs(process.argv);
 
 function processAllRepos(repos) {
   repos.forEach(cloneLocally);
@@ -19,14 +19,14 @@ const cloneLocally = async (gitRepo) => {
   // TODO: check here to see if the file path already exists and skip if so
   await clone(
     gitRepo,
-    join('..', '.corpora', args.language, `${repoName}`),
+    join('..', '.corpora', `${language}-${count}`, `${repoName}`),
     options,
     () => console.log(`cloned ${repoName}`),
   );
 };
 
 const repos = fs
-  .readFileSync(join('..', '.corpora', `${args.language}-repos.txt`))
+  .readFileSync(join('..', '.corpora', `${language}-${count}.txt`))
   .toString()
   .split('\n')
   .slice(0, -1);
