@@ -19,8 +19,7 @@ export const stats = (items = []) => {
 
   stats.median = median(items);
   stats.mean = mean(items);
-  stats.variance = mean(items.map((number) => (number - stats.mean) ** 2));
-  stats.stDeviation = Math.sqrt(stats.variance);
+  stats.stDeviation = Math.sqrt(mean(items.map((number) => (number - stats.mean) ** 2)));
 
   return stats;
 };
