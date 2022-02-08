@@ -1,3 +1,16 @@
 data
 node_modules
 code-results.txt
+
+
+# repo lists
+*-repos.txt
+
+# locally saved corpora
+.corpora
+
+# local mongo data
+/data
+
+# persisted analysis results
+results*
